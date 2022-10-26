@@ -1,0 +1,82 @@
+h1 {
+    color: blue;
+    font-size: 200%;
+    text-align: center;
+  }
+  p {
+    color: red;
+    text-align: center;
+    font-size: 100%;
+
+  }
+  body {
+    background-color: #E6E6FA;
+  }
+  img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    height: 50%;
+
+  }
+
+form {
+    display: table;
+    margin: 0 auto;
+}
+* {
+  box-sizing: border-box;
+}
+.row {
+  display: flex;
+}
+.column {
+  flex: 50%;
+  padding: 5px;
+}
+  
+/* The sidebar menu */
+.sidenav {
+  height: 100%; /* Full-height: remove this if you want "auto" height */
+  width: 25%; /* Set the width of the sidebar */
+  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+  z-index: 1; /* Stay on top */
+  top: 0; /* Stay at the top */
+  left: 0;
+  background-color: rgb(46, 216, 97); /* Black */
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 20px;
+}
+
+/* The navigation menu links */
+.sidenav a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #c4a0a0;
+  display: block;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+#hidden {
+  display: none;
+}
+/* Style page content */
+.main {
+  margin-left: 25%; /* Same as the width of the sidebar */
+  padding: 0px 0px;
+ 
+}
+
+
+
+/* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}

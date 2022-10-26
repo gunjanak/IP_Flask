@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="/staticFiles/main.css"/>
+        <script>
+            var TopicObject = {
+              "Basic":{
+                "Negative":[],
+                "Threshold":[]
+              },
+              "Spatial":{
+                "Smooth":[],
+                "Sharp":[]
+              }
+            }
+            window.onload = function() {
+              var TopicSel = document.getElementById("Topic");
+              var AlgorithmSel = document.getElementById("Algorithm");
+              
+              //var chapterSel = document.getElementById("chapter");
+              for (var x in TopicObject) {
+                console.log(x)
+                TopicSel.options[TopicSel.options.length] = new Option(x, x);
+                
+              }
+              TopicSel.onchange = function() { 
+                AlgorithmSel.length = 1;
+                //display correct values
+                console.log(TopicObject[this.value])
+                for (var y in TopicObject[this.value]) {
+                  AlgorithmSel.options[AlgorithmSel.options.length] = new Option(y, y);
+                  console.log(y);
+                }
+              }
+              AlgorithmSel.onchange = function() {
+               
+                var z = AlgorithmSel.value;
+                console.log(z)
+                //let p = document.getElementById("magic");
+                let q = document.getElementById("hidden");
+
+                if(z=='Threshold'){
+                    //p.innerHTML = 'Threshold';
+                    q.style.display = "block";
+
+                }
+              }
+
+              
+            }
+
+            
+            </script>
+
+    </head>
+    <body>
+        <!-- Side navigation -->
+<div class="sidenav">
+       <h1>Algorithm Selection</h1>
+       <form method="post" name="form1" id="form1" action="/">
+        Subjects: <select name="Topic" id="Topic">
+            <option value="" selected="selected">Select Topic</option>
+          </select>
+          <br><br>
+        Topics: <select name="Algorithm" id="Algorithm">
+            <option value="" selected="selected">Please select Topic first</option>
+          </select>
+          <br><br>
+
+          <div id="hidden">
+            <input id='Threshold_input' type="number" name="Threshold_value", placeholder="Enter Threshold Value"/>
+          <br><br>
+
+          </div>
+          
+     
+          <input type="submit" value="Submit"  name="Cascade_action">  
+        </form>   
+
+    </div>
+        
+
+
+
+        <div class="main">
+            <h1>Upload and display image in Flask </h1>
+      
+        <p>Show image in html using Flask </p>
+        <form method="POST" enctype="multipart/form-data" action="/">
+            <input type="file" id="myFile" name="uploaded-file" accept=".jpg">
+            <input type="submit" value="Submit" name="Submit_action">
+        </form>
+
+        <p style="color: blue;">Choose image file to upload</p>
+       
+
+        <div class="row">
+            <div class="column">
+                {% if user_image %}
+                <p>Original Image</p>
+                <img src="{{ user_image }}" alt="Original" style="width: 100%;">
+                {% endif %}
+            </div>
+            <div class="column">
+                {% if updated_image %}
+                <p>{{ Algorithm_name }}</p>
+                <img src="{{ updated_image }}" alt="Updated" style="width: 100%;">
+                {% endif %}
+            </div>
+        </div>
+       
+
+        </div>
+
+        
+        
+    </body>
+    <script>
+        var slider = document.getElementById("myRange");
+        var output = document.getElementById("demo");
+        output.innerHTML = slider.value;
+        
+        slider.oninput = function() {
+          output.innerHTML = this.value;
+        }
+        </script>
+</html>
