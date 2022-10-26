@@ -6,7 +6,11 @@
             var TopicObject = {
               "Basic":{
                 "Negative":[],
-                "Threshold":[]
+                "Threshold":[],
+                "BitPlane":[],
+                "LogTransform":[],
+                "PowerTransform":[],
+                "Histogram":[]
               },
               "Spatial":{
                 "Smooth":[],
@@ -29,7 +33,7 @@
                 console.log(TopicObject[this.value])
                 for (var y in TopicObject[this.value]) {
                   AlgorithmSel.options[AlgorithmSel.options.length] = new Option(y, y);
-                  console.log(y);
+                  //console.log(y);
                 }
               }
               AlgorithmSel.onchange = function() {
@@ -38,14 +42,39 @@
                 console.log(z)
                 //let p = document.getElementById("magic");
                 let q = document.getElementById("hidden");
+                console.log(q)
+                let q_bitplane = document.getElementById("hidden_BitPlane");
+                console.log(q_bitplane)
+
+                let q_power = document.getElementById("hidden_Power");
+               
 
                 if(z=='Threshold'){
-                    //p.innerHTML = 'Threshold';
                     q.style.display = "block";
 
-                }
-              }
+                    q_bitplane.style.display="none";
+                    q_power.style.display = "none";
 
+                    
+                }
+                else if (z=='BitPlane'){
+                    q.style.display = "none";
+                    q_bitplane.style.display = "block";
+
+                }
+                else if(z=='PowerTransform'){
+                    q.style.display = "none";
+                    q_bitplane.style.display = "none";
+                    q_power.style.display="block";
+                }
+                else {
+                    q.style.display = "none";
+                    q_bitplane.style.display = "none";
+                    q_power.style.display="none";
+
+                }
+            
+              }
               
             }
 
@@ -54,6 +83,9 @@
 
     </head>
     <body>
+     
+
+
         <!-- Side navigation -->
 <div class="sidenav">
        <h1>Algorithm Selection</h1>
@@ -68,13 +100,26 @@
           <br><br>
 
           <div id="hidden">
-            <input id='Threshold_input' type="number" name="Threshold_value", placeholder="Enter Threshold Value"/>
+            
+            <input id='Threshold_input' type="number" name="Threshold_value" step="1" min="0" max="255"  placeholder="0-255" />
           <br><br>
+        </div>
 
-          </div>
-          
-     
-          <input type="submit" value="Submit"  name="Cascade_action">  
+
+        <div id="hidden_BitPlane">
+            <input id='Bitplane_input' type="number" name="Bitplane_value" step="1" min="1" max="8"  placeholder="1-8" />
+          <br><br>
+        </div>
+
+        <div id="hidden_Power">
+            <input id='Power_input' type="number" name="Power_value" step="0.1" min="0" max="2.0"  placeholder="0-2" />
+          <br><br>
+        </div>
+
+            <input class="Submit_algo" type="submit" value="Submit"  name="Cascade_action">
+
+       
+            
         </form>   
 
     </div>
@@ -87,7 +132,7 @@
       
         <p>Show image in html using Flask </p>
         <form method="POST" enctype="multipart/form-data" action="/">
-            <input type="file" id="myFile" name="uploaded-file" accept=".jpg">
+            <input type="file" id="myFile" name="uploaded-file" accept=".jpg,.jpeg,.png">
             <input type="submit" value="Submit" name="Submit_action">
         </form>
 
@@ -115,13 +160,5 @@
         
         
     </body>
-    <script>
-        var slider = document.getElementById("myRange");
-        var output = document.getElementById("demo");
-        output.innerHTML = slider.value;
-        
-        slider.oninput = function() {
-          output.innerHTML = this.value;
-        }
-        </script>
+   
 </html>
