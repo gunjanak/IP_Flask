@@ -14,7 +14,11 @@
               },
               "Spatial":{
                 "Smooth":[],
-                "Sharp":[]
+                "Sharp":[],
+                "Min":[],
+                "Max":[],
+                "Median":[],
+                "High_Boost":[]
               }
             }
             window.onload = function() {
@@ -128,15 +132,17 @@
 
 
         <div class="main">
-            <h1>Upload and display image in Flask </h1>
+            <h1>Basic Image Processing Application Using Flask</h1>
       
-        <p>Show image in html using Flask </p>
-        <form method="POST" enctype="multipart/form-data" action="/">
-            <input type="file" id="myFile" name="uploaded-file" accept=".jpg,.jpeg,.png">
-            <input type="submit" value="Submit" name="Submit_action">
-        </form>
-
-        <p style="color: blue;">Choose image file to upload</p>
+            <p>Choose image file to upload</p>
+            
+              <form method="POST" enctype="multipart/form-data" action="/">
+                <input type="file" id="myFile" name="uploaded-file" accept=".jpg,.jpeg,.png">
+                <input type="submit" value="Submit" name="Submit_action">
+            </form>
+            
+        
+        
        
 
         <div class="row">

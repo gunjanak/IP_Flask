@@ -1,16 +1,16 @@
 h1 {
-    color: blue;
+    color: rgb(21, 21, 53);
     font-size: 200%;
     text-align: center;
   }
   p {
-    color: red;
+    color: rgb(87, 28, 28);
     text-align: center;
-    font-size: 100%;
+    font-size: 120%;
 
   }
   body {
-    background-color: #E6E6FA;
+    background-color: #e5e5f1;
   }
   img {
     display: block;
@@ -29,6 +29,9 @@ h1 {
 * {
   box-sizing: border-box;
 }
+
+
+
 .row {
   display: flex;
 }
@@ -45,7 +48,7 @@ h1 {
   z-index: 1; /* Stay on top */
   top: 0; /* Stay at the top */
   left: 0;
-  background-color: rgb(46, 216, 97); /* Black */
+  background-color: rgb(68, 231, 117); /* Black */
   overflow-x: hidden; /* Disable horizontal scroll */
   padding-top: 20px;
 }

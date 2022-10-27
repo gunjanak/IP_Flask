@@ -1,9 +1,10 @@
 from pydoc_data.topics import topics
-from flask import Flask, render_template, request, session,redirect,flash
+from flask import Flask, render_template, request, session,redirect
 import os
 from werkzeug.utils import secure_filename
 from PIL import Image
 import Basic
+import Spatial
  
 
 
@@ -30,6 +31,8 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 #Define secret key to enable session
 app.secret_key = "sanaan"
 
+
+
 @app.route('/',methods=("POST","GET"))
 def index():
     Flag = 0
@@ -42,10 +45,6 @@ def index():
             #upload file flask
             uploaded_img = request.files['uploaded-file']
             print(uploaded_img.filename)
-            #extracting uploaded data file name
-            #img_filename = secure_filename(uploaded_img.filename)
-            #print(img_filename)
-            #Upload file todatabase (defined uploaded folder in staticpath)
             uploaded_img.save(os.path.join(app.config['UPLOAD_FOLDER'],'upload.jpg'))
             #Storing uploaded file path in flask session
             session['uploaded_img_file_path'] = os.path.join(app.config['UPLOAD_FOLDER'],'upload.jpg')
@@ -156,6 +155,72 @@ def index():
                 updated_img_file_path = "staticFiles/uploads/upload_histogram.jpg"
                 Algorithm_name = 'Histogram Equalization'
 
+            elif(Topic=='Spatial' and Algorithm=='Smooth'):
+                print('This is Smooth Filtering')
+                img_file_path="staticFiles/uploads/upload.jpg"
+                gray_image="staticFiles/uploads/upload_400.jpg"
+                gray_image = Image.open(gray_image)
+                output_image = Spatial.smooth_filter(gray_image)
+                output_image = output_image[1].save("staticFiles/uploads/upload_Smooth_Filter.jpg")
+                print(output_image)
+                updated_img_file_path = "staticFiles/uploads/upload_Smooth_Filter.jpg"
+                Algorithm_name = 'Smooth Filter'
+            
+            elif(Topic=='Spatial' and Algorithm=='Sharp'):
+                print('This is Sharp Filtering')
+                img_file_path="staticFiles/uploads/upload.jpg"
+                gray_image="staticFiles/uploads/upload_400.jpg"
+                gray_image = Image.open(gray_image)
+                output_image = Spatial.sharp_filter(gray_image)
+                output_image = output_image[1].save("staticFiles/uploads/upload_Sharp_Filter.jpg")
+                print(output_image)
+                updated_img_file_path = "staticFiles/uploads/upload_Sharp_Filter.jpg"
+                Algorithm_name = 'Sharp Filter'
+                
+            elif(Topic=='Spatial' and Algorithm=='Min'):
+                print('This is Minimum Filtering')
+                img_file_path="staticFiles/uploads/upload.jpg"
+                gray_image="staticFiles/uploads/upload_400.jpg"
+                gray_image = Image.open(gray_image)
+                output_image = Spatial.min_filter(gray_image)
+                output_image = output_image[1].save("staticFiles/uploads/upload_Min_Filter.jpg")
+                print(output_image)
+                updated_img_file_path = "staticFiles/uploads/upload_Min_Filter.jpg"
+                Algorithm_name = 'Min Filter'
+
+            elif(Topic=='Spatial' and Algorithm=='Max'):
+                print('This is Maximum Filtering')
+                img_file_path="staticFiles/uploads/upload.jpg"
+                gray_image="staticFiles/uploads/upload_400.jpg"
+                gray_image = Image.open(gray_image)
+                output_image = Spatial.max_filter(gray_image)
+                output_image = output_image[1].save("staticFiles/uploads/upload_Max_Filter.jpg")
+                print(output_image)
+                updated_img_file_path = "staticFiles/uploads/upload_Max_Filter.jpg"
+                Algorithm_name = 'Max Filter'
+
+            elif(Topic=='Spatial' and Algorithm=='Median'):
+                print('This is Median Filtering')
+                img_file_path="staticFiles/uploads/upload.jpg"
+                gray_image="staticFiles/uploads/upload_400.jpg"
+                gray_image = Image.open(gray_image)
+                output_image = Spatial.median_filter(gray_image)
+                output_image = output_image[1].save("staticFiles/uploads/upload_Median_Filter.jpg")
+                print(output_image)
+                updated_img_file_path = "staticFiles/uploads/upload_Median_Filter.jpg"
+                Algorithm_name = 'Median Filter'
+
+
+            elif(Topic=='Spatial' and Algorithm=='High_Boost'):
+                print('This is High_Boost Filtering')
+                img_file_path="staticFiles/uploads/upload.jpg"
+                gray_image="staticFiles/uploads/upload_400.jpg"
+                gray_image = Image.open(gray_image)
+                output_image = Spatial.high_boost(gray_image)
+                output_image = output_image[1].save("staticFiles/uploads/upload_High_Boost_Filter.jpg")
+                print(output_image)
+                updated_img_file_path = "staticFiles/uploads/upload_High_Boost_Filter.jpg"
+                Algorithm_name = 'High Boost'
                 
 
         else:
