@@ -1,3 +1,4 @@
+import imp
 from pydoc_data.topics import topics
 from flask import Flask, render_template, request, session,redirect
 import os
@@ -5,6 +6,7 @@ from werkzeug.utils import secure_filename
 from PIL import Image
 import Basic
 import Spatial
+import Derivative
  
 
 
@@ -221,6 +223,63 @@ def index():
                 print(output_image)
                 updated_img_file_path = "staticFiles/uploads/upload_High_Boost_Filter.jpg"
                 Algorithm_name = 'High Boost'
+
+            elif(Topic=='Derivative' and Algorithm=='Prewit_horizontal'):
+                print('This is Prewit_horizontal')
+                img_file_path="staticFiles/uploads/upload.jpg"
+                gray_image="staticFiles/uploads/upload_400.jpg"
+                gray_image = Image.open(gray_image)
+                output_image = Derivative.Prewitt_Operator_horizontal(gray_image)
+                output_image = output_image[1].save("staticFiles/uploads/upload_Prewitt_Operator_horizontal.jpg")
+                print(output_image)
+                updated_img_file_path = "staticFiles/uploads/upload_Prewitt_Operator_horizontal.jpg"
+                Algorithm_name = 'Prewitt Operator horizontal'
+
+            elif(Topic=='Derivative' and Algorithm=='Prewit_vertical'):
+                print('This is Prewit_vertical')
+                img_file_path="staticFiles/uploads/upload.jpg"
+                gray_image="staticFiles/uploads/upload_400.jpg"
+                gray_image = Image.open(gray_image)
+                output_image = Derivative.Prewitt_Operator_vertical(gray_image)
+                output_image = output_image[1].save("staticFiles/uploads/upload_Prewitt_Operator_vertical.jpg")
+                print(output_image)
+                updated_img_file_path = "staticFiles/uploads/upload_Prewitt_Operator_vertical.jpg"
+                Algorithm_name = 'Prewitt Operator Vertical'
+
+            elif(Topic=='Derivative' and Algorithm=='Sobel_horizontal'):
+                print('This is Sobel Horizontal')
+                img_file_path="staticFiles/uploads/upload.jpg"
+                gray_image="staticFiles/uploads/upload_400.jpg"
+                gray_image = Image.open(gray_image)
+                output_image = Derivative.Sobel_Operator_horizontal(gray_image)
+                output_image = output_image[1].save("staticFiles/uploads/upload_Sobel_Operator_horizontal.jpg")
+                print(output_image)
+                updated_img_file_path = "staticFiles/uploads/upload_Sobel_Operator_horizontal.jpg"
+                Algorithm_name = 'Sobel Operator Horizontal'
+
+            elif(Topic=='Derivative' and Algorithm=='Sobel_vertical'):
+                print('This is Sobel Vertical')
+                img_file_path="staticFiles/uploads/upload.jpg"
+                gray_image="staticFiles/uploads/upload_400.jpg"
+                gray_image = Image.open(gray_image)
+                output_image = Derivative.Sobel_Operator_vertical(gray_image)
+                output_image = output_image[1].save("staticFiles/uploads/upload_Sobel_Operator_vertical.jpg")
+                print(output_image)
+                updated_img_file_path = "staticFiles/uploads/upload_Sobel_Operator_vertical.jpg"
+                Algorithm_name = 'Sobel Operator Vertical'
+
+            elif(Topic=='Derivative' and Algorithm=='Laplacian'):
+                print('This is Laplacian')
+                img_file_path="staticFiles/uploads/upload.jpg"
+                gray_image="staticFiles/uploads/upload_400.jpg"
+                gray_image = Image.open(gray_image)
+                output_image = Derivative.Laplacian_filter(gray_image)
+                output_image = output_image[1].save("staticFiles/uploads/upload_Laplacian.jpg")
+                print(output_image)
+                updated_img_file_path = "staticFiles/uploads/upload_Laplacian.jpg"
+                Algorithm_name = 'Laplacian'
+
+
                 
 
         else:
